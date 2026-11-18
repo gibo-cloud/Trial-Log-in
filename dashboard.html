@@ -12,6 +12,16 @@
             window.location.replace("index.html");
         }
     </script>
+    <script>
+    if (sessionStorage.getItem('isLoggedIn') !== 'true') {
+        window.location.replace("index.html");
+    }
+
+    function logoutUser() {
+        sessionStorage.clear();
+        window.location.replace("index.html");
+    }
+    </script>
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');

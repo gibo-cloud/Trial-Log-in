@@ -789,7 +789,7 @@
 
             .search-input-group input,
             .search-select {
-                font-size: 16px; /* Prevents auto-zoom on mobile browsers */
+                font-size: 16px;
             }
 
             .search-input-group button {
@@ -863,8 +863,8 @@
                     </div>
                 </div>
             </div>
-
-       <div class="contract-info-card" id="card-24EI0001">
+dito mo lagay
+      <div class="contract-info-card" id="card-24EI0001">
           <div class="info-group">
          <label>Contract ID:</label>
     <div class="info-value">24EI0001</div>
@@ -7811,6 +7811,9 @@
 
         </div>
 
+
+
+
         <!-- SHARE FILES SIDEBAR -->
         <div id="shareSidebar">
             <div class="claims-header">
@@ -8102,7 +8105,7 @@
         </nav>
 
         <div class="content-area">
-            <video autoplay loop muted playsinline class="bg-video">
+            <video id="bgVideo" autoplay loop muted playsinline webkit-playsinline preload="auto" class="bg-video">
                 <source src="kiba.mp4" type="video/mp4">
             </video>
         </div>
@@ -8817,6 +8820,24 @@
                 searchEmployee();
             }
         });
+
+        // Force video autoplay on mobile browsers
+        const bgVideo = document.getElementById('bgVideo');
+        if (bgVideo) {
+            bgVideo.defaultMuted = true;
+            bgVideo.muted = true;
+            bgVideo.play().catch(() => {
+                const startVideoOnTouch = () => {
+                    bgVideo.defaultMuted = true;
+                    bgVideo.muted = true;
+                    bgVideo.play();
+                    document.removeEventListener('touchstart', startVideoOnTouch);
+                    document.removeEventListener('click', startVideoOnTouch);
+                };
+                document.addEventListener('touchstart', startVideoOnTouch, { passive: true });
+                document.addEventListener('click', startVideoOnTouch);
+            });
+        }
     </script>
 </body>
 </html>
